@@ -269,7 +269,16 @@ public class MyBatisGeneratorConfigurationParser {
         if (stringHasValue(enableInsert)) {
             tc.setInsertStatementEnabled(isTrue(enableInsert));
         }
-
+        //add config parser for insertSeletive ,updateByPrimaryKeySelective
+        String enableInsertSelective = attributes.getProperty("enableInsertSelective");
+        if (stringHasValue(enableInsertSelective)) {
+            tc.setInsertSelectiveStatementEnabled(isTrue(enableInsertSelective));
+        }
+        String enableUpdateByPrimaryKeySelective = attributes.getProperty("enableUpdateByPrimaryKeySelective");
+        if (stringHasValue(enableUpdateByPrimaryKeySelective)) {
+            tc.setUpdateByPrimaryKeySelectiveStatementEnabled(isTrue(enableUpdateByPrimaryKeySelective));
+        }
+        
         String enableSelectByPrimaryKey = attributes
                 .getProperty("enableSelectByPrimaryKey"); //$NON-NLS-1$
         if (stringHasValue(enableSelectByPrimaryKey)) {

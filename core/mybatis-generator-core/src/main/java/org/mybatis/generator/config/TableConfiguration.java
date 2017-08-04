@@ -39,7 +39,11 @@ import org.mybatis.generator.api.dom.xml.XmlElement;
 public class TableConfiguration extends PropertyHolder {
 
     private boolean insertStatementEnabled;
-
+    //--add switch to some method by Wilson Lai 2017.7.31---------
+    private boolean insertSelectiveStatementEnabled;
+    
+    private boolean updateByPrimaryKeySelectiveStatementEnabled;
+    //-------------------------------------------------------------
     private boolean selectByPrimaryKeyStatementEnabled;
 
     private boolean selectByExampleStatementEnabled;
@@ -105,6 +109,7 @@ public class TableConfiguration extends PropertyHolder {
         selectByPrimaryKeyStatementEnabled = true;
         selectByExampleStatementEnabled = true;
         updateByPrimaryKeyStatementEnabled = true;
+        updateByPrimaryKeySelectiveStatementEnabled = true;
         deleteByPrimaryKeyStatementEnabled = true;
         deleteByExampleStatementEnabled = true;
         countByExampleStatementEnabled = true;
@@ -271,7 +276,9 @@ public class TableConfiguration extends PropertyHolder {
                 || deleteByExampleStatementEnabled
                 || deleteByPrimaryKeyStatementEnabled
                 || countByExampleStatementEnabled
-                || updateByExampleStatementEnabled;
+                || updateByExampleStatementEnabled 
+                || insertSelectiveStatementEnabled
+                || updateByPrimaryKeySelectiveStatementEnabled;
     }
 
     public void setGeneratedKey(GeneratedKey generatedKey) {
@@ -610,5 +617,21 @@ public class TableConfiguration extends PropertyHolder {
 
     public void setSqlProviderName(String sqlProviderName) {
         this.sqlProviderName = sqlProviderName;
+    }
+
+    public boolean isInsertSelectiveStatementEnabled() {
+        return insertSelectiveStatementEnabled;
+    }
+
+    public void setInsertSelectiveStatementEnabled(boolean insertSelectiveStatementEnabled) {
+        this.insertSelectiveStatementEnabled = insertSelectiveStatementEnabled;
+    }
+
+    public boolean isUpdateByPrimaryKeySelectiveStatementEnabled() {
+        return updateByPrimaryKeySelectiveStatementEnabled;
+    }
+
+    public void setUpdateByPrimaryKeySelectiveStatementEnabled(boolean updateByPrimaryKeySelectiveStatementEnabled) {
+        this.updateByPrimaryKeySelectiveStatementEnabled = updateByPrimaryKeySelectiveStatementEnabled;
     }
 }
