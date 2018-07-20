@@ -73,30 +73,30 @@ public class DAOGenerator extends AbstractJavaClientGenerator {
     @Override
     public List<CompilationUnit> getCompilationUnits() {
         FullyQualifiedTable table = introspectedTable.getFullyQualifiedTable();
-        progressCallback.startTask(getString(
-                "Progress.14", table.toString())); //$NON-NLS-1$
+        progressCallback.startTask(getString("Progress.14", table.toString())); //$NON-NLS-1$
         TopLevelClass topLevelClass = getTopLevelClassShell();
         Interface interfaze = getInterfaceShell();
-
-        addCountByExampleMethod(topLevelClass, interfaze);
-        addDeleteByExampleMethod(topLevelClass, interfaze);
-        addDeleteByPrimaryKeyMethod(topLevelClass, interfaze);
-        addInsertMethod(topLevelClass, interfaze);
-        addInsertSelectiveMethod(topLevelClass, interfaze);
-        addSelectByExampleWithBLOBsMethod(topLevelClass, interfaze);
-        addSelectByExampleWithoutBLOBsMethod(topLevelClass, interfaze);
-        addSelectByPrimaryKeyMethod(topLevelClass, interfaze);
-        addUpdateByExampleParmsInnerclass(topLevelClass, interfaze);
-        addUpdateByExampleSelectiveMethod(topLevelClass, interfaze);
-        addUpdateByExampleWithBLOBsMethod(topLevelClass, interfaze);
-        addUpdateByExampleWithoutBLOBsMethod(topLevelClass, interfaze);
-        addUpdateByPrimaryKeySelectiveMethod(topLevelClass, interfaze);
-        addUpdateByPrimaryKeyWithBLOBsMethod(topLevelClass, interfaze);
-        addUpdateByPrimaryKeyWithoutBLOBsMethod(topLevelClass, interfaze);
-
+        
+        if (introspectedTable.getTableConfiguration().isGenerateClientJavaMethodEnabled()) {
+            addCountByExampleMethod(topLevelClass, interfaze);
+            addDeleteByExampleMethod(topLevelClass, interfaze);
+            addDeleteByPrimaryKeyMethod(topLevelClass, interfaze);
+            addInsertMethod(topLevelClass, interfaze);
+            addInsertSelectiveMethod(topLevelClass, interfaze);
+            addSelectByExampleWithBLOBsMethod(topLevelClass, interfaze);
+            addSelectByExampleWithoutBLOBsMethod(topLevelClass, interfaze);
+            addSelectByPrimaryKeyMethod(topLevelClass, interfaze);
+            addUpdateByExampleParmsInnerclass(topLevelClass, interfaze);
+            addUpdateByExampleSelectiveMethod(topLevelClass, interfaze);
+            addUpdateByExampleWithBLOBsMethod(topLevelClass, interfaze);
+            addUpdateByExampleWithoutBLOBsMethod(topLevelClass, interfaze);
+            addUpdateByPrimaryKeySelectiveMethod(topLevelClass, interfaze);
+            addUpdateByPrimaryKeyWithBLOBsMethod(topLevelClass, interfaze);
+            addUpdateByPrimaryKeyWithoutBLOBsMethod(topLevelClass, interfaze);
+        }
+        ;
         List<CompilationUnit> answer = new ArrayList<CompilationUnit>();
-        if (context.getPlugins().clientGenerated(interfaze,
-                topLevelClass, introspectedTable)) {
+        if (context.getPlugins().clientGenerated(interfaze, topLevelClass, introspectedTable)) {
             answer.add(topLevelClass);
             answer.add(interfaze);
         }

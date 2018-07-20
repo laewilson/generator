@@ -96,7 +96,9 @@ public class TableConfiguration extends PropertyHolder {
     private String sqlProviderName;
 
     private List<IgnoredColumnPattern> ignoredColumnPatterns = new ArrayList<IgnoredColumnPattern>();
-
+    
+    private boolean generateClientJavaMethodEnabled;//to enable or disable to generate client java methods
+    
     public TableConfiguration(Context context) {
         super();
 
@@ -114,6 +116,7 @@ public class TableConfiguration extends PropertyHolder {
         deleteByExampleStatementEnabled = true;
         countByExampleStatementEnabled = true;
         updateByExampleStatementEnabled = true;
+        generateClientJavaMethodEnabled = true;
     }
 
     public boolean isDeleteByPrimaryKeyStatementEnabled() {
@@ -633,5 +636,13 @@ public class TableConfiguration extends PropertyHolder {
 
     public void setUpdateByPrimaryKeySelectiveStatementEnabled(boolean updateByPrimaryKeySelectiveStatementEnabled) {
         this.updateByPrimaryKeySelectiveStatementEnabled = updateByPrimaryKeySelectiveStatementEnabled;
+    }
+
+    public boolean isGenerateClientJavaMethodEnabled() {
+        return generateClientJavaMethodEnabled;
+    }
+
+    public void setGenerateClientJavaMethodEnabled(boolean generateClientJavaMethodEnabled) {
+        this.generateClientJavaMethodEnabled = generateClientJavaMethodEnabled;
     }
 }
